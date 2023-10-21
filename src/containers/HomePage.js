@@ -1,10 +1,8 @@
-import UploadImage from "../components/Image/UploadImage";
-
 const HomePage = () => {
 
     return (
         <>
-            <UploadImage />
+            Ana Sayfa
         </>
     )
 }
