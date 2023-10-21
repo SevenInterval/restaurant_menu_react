@@ -1,9 +1,10 @@
-import { Form } from "antd";
+import { Button, Form } from "antd";
 import { useEffect, useRef, useState } from "react";
 import CategoryForm from "../components/Category/CategoryForm";
 import CategoryList from "../components/Category/CategoryList";
 import { backendUri } from "../utilities/strings";
 import { errorModal, successModal } from "../utilities/modals";
+import { PlusCircleOutlined } from "@ant-design/icons"
 
 function getBase64(file) {
     return new Promise((resolve, reject) => {
@@ -18,6 +19,7 @@ const Categories = () => {
     const [categoryData, setCategoryData] = useState([])
     const [criteriaCategory, setCriteriaCategory] = useState();
     const [loading, setLoading] = useState(false);
+    const [categoryAddShow, setCategoryAddShow] = useState(false);
     const isFetchCategory = useRef(true);
     const [formCategory] = Form.useForm();
     const url = backendUri;
@@ -150,12 +152,21 @@ const Categories = () => {
         setPreviewImage();
     }
 
+    const handleHide = () => {
+        setCategoryAddShow(!categoryAddShow);
+    }
+
     return (
         <>
-            <CategoryForm formCategory={formCategory} onFinish={onFinish}
-                onFinishFailed={onFinishFailed} addProperty={true} handleTemizle={handleTemizle}
-                previewVisible={previewVisible} handleCancel={handleCancel} previewImage={previewImage} uploadFile={uploadFile}
-                handlePreview={handlePreview} handleUpload={handleUpload} />
+            {categoryAddShow ?
+                <CategoryForm formCategory={formCategory} onFinish={onFinish}
+                    onFinishFailed={onFinishFailed} addProperty={true} handleTemizle={handleTemizle}
+                    previewVisible={previewVisible} handleCancel={handleCancel} previewImage={previewImage} uploadFile={uploadFile}
+                    handlePreview={handlePreview} handleUpload={handleUpload} handleHide={handleHide} /> :
+                <Button icon={<PlusCircleOutlined />} type="primary" style={{ marginBottom: "12px" }} onClick={() => handleHide()}>
+                    KATEGORİ EKLE
+                </Button>}
+
             <CategoryList categoryData={categoryData} loading={loading} />
         </>
     )

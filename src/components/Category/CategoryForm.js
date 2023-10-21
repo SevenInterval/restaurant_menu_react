@@ -1,13 +1,16 @@
 import { Button, Checkbox, Form, Image, Input, Modal, Upload } from "antd";
 import { useNavigate } from "react-router-dom";
-import { UploadOutlined } from "@ant-design/icons";
+import {
+    UploadOutlined, PlusCircleOutlined, EditOutlined, ClearOutlined, ShrinkOutlined,
+    StepBackwardOutlined, DeleteOutlined
+} from "@ant-design/icons";
 import Title from "../Title";
 
 const CategoryForm = (props) => {
     const navigate = useNavigate();
     const { formCategory, onFinish, onFinishFailed, handleTemizle, addProperty, handleDelete,
         previewVisible, handleCancel, previewImage, uploadFile, handlePreview, handleUpload,
-        belgeGorsel } = props;
+        belgeGorsel, handleHide } = props;
 
     const geriDon = () => {
         navigate("/kategoriler");
@@ -27,7 +30,7 @@ const CategoryForm = (props) => {
                 wrapperCol={{
                     span: 12
                 }}
-                style={{ align: "" }}
+                style={{ padding: "12px" }}
             >
                 <Form.Item
                     label='Kategori Adı'
@@ -59,7 +62,7 @@ const CategoryForm = (props) => {
                     name="durum"
                     valuePropName="checked"
                     wrapperCol={{
-                        offset: 11,
+                        offset: 6,
                         span: 16,
                     }}
                 >
@@ -69,7 +72,7 @@ const CategoryForm = (props) => {
 
                 <Form.Item
                     wrapperCol={{
-                        offset: 10,
+                        offset: 6,
                         span: 16,
                     }}> {addProperty ?
                         <>
@@ -104,17 +107,24 @@ const CategoryForm = (props) => {
                     }}
                 >
                     {addProperty ?
-                        <Button onClick={handleTemizle}>
-                            TEMİZLE
-                        </Button> :
                         <>
-                            <Button onClick={() => geriDon()}>
+                            <Button onClick={handleHide} icon={<ShrinkOutlined />}>
+                                GİZLE
+                            </Button>
+                            <Button icon={<ClearOutlined />} onClick={handleTemizle} style={{ marginLeft: "16px" }}>
+                                TEMİZLE
+                            </Button>
+                        </> :
+                        <>
+                            <Button icon={<StepBackwardOutlined />} onClick={() => geriDon()}>
                                 GERİ DÖN
                             </Button>
-                            <Button type="primary" style={{ marginLeft: "12px" }} onClick={() => handleDelete(true)}>SİL</Button>
+                            <Button type="primary" danger icon={<DeleteOutlined />}
+                                style={{ marginLeft: "16px" }} onClick={() => handleDelete(true)}>SİL</Button>
                         </>
                     }
-                    <Button type="primary" htmlType="submit" style={{ marginLeft: "12px" }}>
+                    <Button type="primary" htmlType="submit" style={{ marginLeft: "16px" }}
+                        icon={addProperty ? <PlusCircleOutlined /> : <EditOutlined />}>
                         {addProperty ? "EKLE" : "GÜNCELLE"}
                     </Button>
                 </Form.Item>
