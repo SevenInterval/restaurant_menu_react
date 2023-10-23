@@ -14,6 +14,18 @@ function titleFromName(name) {
   return name.split(/(?=[A-Z])|\s/).map(s => capitalize(s)).join(' ')
 }
 
+function categoryOptionGenerate(categories) {
+  let options = [];
+  categories.map(category => {
+    let newCategoryObject = {
+      value: category._id,
+      label: category.kategori_adi,
+    }
+    options.push(newCategoryObject);
+  })
+  return options;
+}
+
 const backendUri = process.env.REACT_APP_BACKEND_URI;
 
 export {
@@ -21,5 +33,6 @@ export {
   isEmptyString,
   capitalize,
   titleFromName,
+  categoryOptionGenerate,
   backendUri
 }

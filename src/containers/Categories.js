@@ -111,7 +111,7 @@ const Categories = () => {
             }
         })
             .then(() => {
-                successModal("Ekleme");
+                successModal("Kategori Ekleme");
                 fetchAllCategories();
                 formCategory.resetFields();
                 setImageId(null);

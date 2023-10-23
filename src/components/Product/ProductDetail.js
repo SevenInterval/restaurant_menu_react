@@ -4,35 +4,35 @@ import { backendUri } from "../../utilities/strings";
 import { successModal } from "../../utilities/modals";
 import { Form, Modal, Spin } from "antd";
 import Title from "../Title";
-import CategoryForm from "./CategoryForm";
+import ProductForm from "./ProductForm";
 import { useForm } from "antd/es/form/Form";
 
-const CategoryDetail = () => {
+const ProductDetail = () => {
     const location = useLocation();
-    const [categoryId, setCategoryId] = useState();
-    const [categoryImageId, setCategoryImageId] = useState();
+    const [productId, setProductId] = useState();
+    const [productImageId, setProductImageId] = useState();
     const [loading, setLoading] = useState(true);
     const [belgeGorsel, setBelgeGorsel] = useState();
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const url = backendUri;
-    const [formCategoryDetail] = Form.useForm();
+    const [formProductDetail] = Form.useForm();
     const navigate = useNavigate();
-    const isFetchCategory = useForm(false);
+    const isFetchProduct = useForm(false);
 
     useEffect(() => {
-        if (location && location.state && location.state.id && !isFetchCategory.current) {
+        if (location && location.state && location.state.id && !isFetchProduct.current) {
             const id = location.state.id;
-            setCategoryId(id);
-            findCategoryById(id);
-            isFetchCategory.current = true;
+            setProductId(id);
+            findProductById(id);
+            isFetchProduct.current = true;
         }
-        if (categoryImageId) {
-            findImageById(categoryImageId);
+        if (productImageId) {
+            findImageById(productImageId);
         }
-    }, [categoryImageId])
+    }, [productImageId])
 
-    const findCategoryById = async (id) => {
-        let res = await fetch(url + '/category/byid', {
+    const findProductById = async (id) => {
+        let res = await fetch(url + '/product/byid', {
             method: 'POST',
             body: JSON.stringify({ _id: id }),
             headers: {
@@ -42,12 +42,14 @@ const CategoryDetail = () => {
             .then((res) => res.json())
             .then((data) => {
                 // eslint-disable-next-line no-unused-expressions
-                formCategoryDetail.setFieldsValue({
-                    kategori_adi: data.category ? data.category.kategori_adi : null,
-                    detay: data.category ? data.category.detay : null,
-                    durum: data.category ? data.category.durum : false
+                formProductDetail.setFieldsValue({
+                    urun_adi: data.product ? data.product.urun_adi : null,
+                    urun_detay: data.product ? data.product.urun_detay : null,
+                    durum: data.product ? data.product.durum : false,
+                    kategori_id: data.product ? data.product.kategori_id : null,
+                    fiyat: data.product ? data.product.fiyat : null,
                 })
-                setCategoryImageId(data.category.imageId);
+                setProductImageId(data.product.imageId);
             })
             .catch(error => {
                 res.json(error);
@@ -76,23 +78,25 @@ const CategoryDetail = () => {
     }
 
     const onFinish = async (values) => {
-        let categoryCriteria = {
-            _id: categoryId,
-            kategori_adi: values.kategori_adi,
+        let productCriteria = {
+            _id: productId,
+            urun_adi: values.urun_adi,
             durum: (values.durum && typeof values.durum !== "undefined") ? values.durum : false,
-            detay: values.detay,
-            imageId: categoryImageId
+            urun_detay: values.urun_detay,
+            kategori_id: values.kategori_id,
+            fiyat: values.fiyat,
+            imageId: productImageId
         }
-        let res = await fetch(url + '/category', {
+        let res = await fetch(url + '/product', {
             method: 'PUT',
-            body: JSON.stringify(categoryCriteria),
+            body: JSON.stringify(productCriteria),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
             .then(() => {
                 successModal("Güncelleme");
-                navigate("/kategoriler");
+                navigate("/urunler");
             })
             .catch(error => {
                 res.json(error);
@@ -102,12 +106,12 @@ const CategoryDetail = () => {
 
     const handleOkDelete = async () => {
         let deleteCriteria = {
-            _id: categoryId
+            _id: productId
         }
         let deleteImageCriteria = {
-            _id: categoryImageId
+            _id: productImageId
         }
-        let res = await fetch(url + '/category', {
+        let res = await fetch(url + '/product', {
             method: "DELETE",
             body: JSON.stringify(deleteCriteria),
             headers: {
@@ -115,7 +119,7 @@ const CategoryDetail = () => {
             }
         })
             .then(() => {
-                console.log("Kategori silindi");
+                console.log("Ürün silindi");
             })
             .catch(error => {
                 res.json(error);
@@ -131,7 +135,7 @@ const CategoryDetail = () => {
         })
             .then(() => {
                 successModal("Silme");
-                navigate("/kategoriler");
+                navigate("/urunler");
             })
             .catch(error => {
                 resp.json(error);
@@ -153,7 +157,7 @@ const CategoryDetail = () => {
                 <Spin size="large" className="spinClass" /> :
                 <div>
                     <Title titleName={"KATEGORİ DETAY"} />
-                    <CategoryForm formCategory={formCategoryDetail} onFinish={onFinish}
+                    <ProductForm formProduct={formProductDetail} onFinish={onFinish}
                         onFinishFailed={onFinishFailed} handleDelete={handleDelete}
                         belgeGorsel={belgeGorsel} />
                     <Modal
@@ -164,7 +168,7 @@ const CategoryDetail = () => {
                         okText="Onay"
                         cancelText="İptal"
                     >
-                        <p>Kategoriyi Silmek İstediğinizden Emin Misiniz?</p>
+                        <p>Ürün'ü Silmek İstediğinizden Emin Misiniz?</p>
                     </Modal>
                 </div>
             }
@@ -172,4 +176,4 @@ const CategoryDetail = () => {
     )
 }
 
-export default CategoryDetail;
+export default ProductDetail;

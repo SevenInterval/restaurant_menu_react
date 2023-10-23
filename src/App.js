@@ -3,9 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Categories from './containers/Categories';
 import Products from './containers/Products';
-import Settings from './containers/Settings';
 import HomePage from './containers/HomePage';
 import CategoryDetail from './components/Category/CategoryDetail';
+import ProductDetail from './components/Product/ProductDetail';
+import Menu from './containers/Menu';
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/kategoriler" element={<Categories />} />
           <Route path="/urunler" element={<Products />} />
-          <Route path="/ayarlar" element={<Settings />} />
+          <Route path="/menu" element={<Menu />} />
           <Route path="/kategoriDetay" element={<CategoryDetail />} />
+          <Route path="/urunDetay" element={<ProductDetail />} />
         </Routes>
       </div>
     </>
