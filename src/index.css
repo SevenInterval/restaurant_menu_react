@@ -153,3 +153,84 @@
     
     margin: auto;
 }
+
+/*Category Card*/
+.menuPage {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1170px;
+  padding: 30px!important;
+}
+.cardMainDiv {
+  padding: 12px 0 !important;
+    border: none!important;
+    font-style: inherit;
+    margin: 12px 0!important;
+    outline: 0;
+    display: block;
+    text-align: left;
+    background: #022123;
+    color: #fff;
+    height: 60px!important;
+    cursor: pointer;
+}
+
+.cardMainDiv:hover {
+  opacity: 0.8;
+}
+
+.cardSubDiv {
+  display: inline-block;
+  width: 80%;
+  padding-top: 12px;
+}
+
+.cardButtonDiv {
+  display: inline-block;
+  width: 15%;
+  text-align: end;
+  padding-top: 4px;
+  font-size: 22px;
+  vertical-align: super;
+}
+
+@media (max-width: 767px) {
+  .cardKategoriAdi {
+    font-size: 20px!important;
+  }
+  .cardKategoriDetay {
+    font-size: 14px!important;
+    font-weight: 100!important;
+  }
+}
+
+.cardKategoriAdi {
+  background-size: cover !important;
+    background-repeat: no-repeat !important;
+    padding: 0px 16px !important;
+    font-family: Futura-Med;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    line-height: 0.3em;
+}
+
+.cardKategoriDetay {
+  background-size: cover !important;
+    background-repeat: no-repeat !important;
+    padding: 0px 16px !important;
+    font-family: Futura-Med;
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 0.3em;
+    /* padding: 12px; */
+    vertical-align: bottom;
+    opacity: 0.8;
+}
+
+.productCardMain {
+  border: 1px solid #022123;
+  height: auto;
+  padding: 16px;
+}
+

@@ -47,7 +47,7 @@ const CategoryForm = (props) => {
                 <Form.Item
                     label='Detay'
                     name="detay"
-
+                    
                     rules={[
                         {
                             required: true,
@@ -55,7 +55,7 @@ const CategoryForm = (props) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <Input maxLength={45}/>
                 </Form.Item>
 
                 <Form.Item
