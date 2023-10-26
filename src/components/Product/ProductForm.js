@@ -4,6 +4,8 @@ import CategorySelector from "../Category/CategorySelector";
 import { ClearOutlined, DeleteOutlined, EditOutlined, PlusCircleOutlined, ShrinkOutlined, StepBackwardOutlined, UploadOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
+const { TextArea } = Input;
+
 const ProductForm = (props) => {
     const navigate = useNavigate();
     const { formProduct, onFinish, onFinishFailed, addProperty, handleHide, handleTemizle,
@@ -56,7 +58,7 @@ const ProductForm = (props) => {
                         },
                     ]}
                 >
-                    <Input />
+                    <TextArea rows={4} placeholder="Ürün Detayını Giriniz..." maxLength={6} />
                 </Form.Item>
 
                 <Form.Item
