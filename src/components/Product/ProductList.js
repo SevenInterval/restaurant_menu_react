@@ -44,6 +44,7 @@ const ProductList = (props) => {
             filters: productTableFilterKategoriAdi(productData),
             onFilter: (value, record) => record.kategori_adi.indexOf(value) === 0,
             sorter: (a, b) => a.kategori_adi.localeCompare(b.kategori_adi),
+            defaultSortOrder: 'ascend'
         },
         {
             title: 'Durum',
