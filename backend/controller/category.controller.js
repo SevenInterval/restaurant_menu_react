@@ -11,7 +11,7 @@ async function getCategoryById(req, res) {
         console.log(_id);
         const category = await Categories.findOne({
             _id: new ObjectId(_id)
-        })
+        }).populate("image");
         res.json({ status: 200, category: category });
     } catch (error) {
         res.json({ message: error });
@@ -20,12 +20,11 @@ async function getCategoryById(req, res) {
 
 async function getAllCategories(req, res) {
     try {
-        const allCategories = await Categories.find({})
+        const allCategories = await Categories.find({});
         res.json({ status: 200, categories: allCategories });
     } catch (error) {
         res.json({ message: error });
     }
-
 }
 
 async function postCategory(req, res) {
@@ -40,7 +39,7 @@ async function postCategory(req, res) {
             kategori_adi: kategori_adi,
             detay: detay,
             durum: durum,
-            imageId: imageId
+            image: imageId
         })
         res
             .status(200)
@@ -62,7 +61,7 @@ async function updateCategory(req, res) {
         kategori_adi: kategori_adi,
         detay: detay,
         durum: durum,
-        imageId: imageId
+        image: imageId
     }
 
     try {

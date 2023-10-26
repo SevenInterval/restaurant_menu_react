@@ -11,7 +11,7 @@ async function getProductById(req, res) {
         console.log(_id);
         const product = await Products.findOne({
             _id: new ObjectId(_id)
-        })
+        }).populate("image");
         res.json({ status: 200, product: product });
     } catch (error) {
         res.json({ message: error });
@@ -42,7 +42,7 @@ async function postProduct(req, res) {
             durum: durum,
             kategori_id: kategori_id,
             fiyat: fiyat,
-            imageId: imageId
+            image: imageId
         })
         res
             .status(200)
@@ -66,7 +66,7 @@ async function updateProduct(req, res) {
         durum: durum,
         kategori_id: kategori_id,
         fiyat: fiyat,
-        imageId: imageId
+        image: imageId
     }
 
     try {
@@ -99,10 +99,28 @@ async function deleteProduct(req, res) {
     }
 }
 
+async function deleteProductByCategoryId(req, res) {
+    const { body } = req;
+    const { _id } = body;
+
+    console.log("Server received deletable _id:");
+    console.log({ _id });
+
+    try {
+        await Products.deleteOne({
+            category: new ObjectId(_id)
+        })
+        res.status(200).json(_id);
+    } catch (error) {
+        res.json({ message: error });
+    }
+}
+
 module.exports = {
     getProductById,
     getAllProducts,
     postProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    deleteProductByCategoryId
 }

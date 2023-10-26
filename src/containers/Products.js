@@ -77,6 +77,7 @@ const Products = () => {
             const base64Object = {
                 base64: await getBase64(uploadFile[0].originFileObj)
             }
+            setLoading(true);
             let res = await fetch(url + "/image", {
                 method: "POST",
                 body: JSON.stringify(base64Object),
@@ -122,6 +123,7 @@ const Products = () => {
                 setImageId(null);
                 setUploadFile([]);
                 setPreviewImage();
+                setLoading(false);
             })
             .catch(error => {
                 res.json(error);
@@ -168,7 +170,7 @@ const Products = () => {
                     onFinishFailed={onFinishFailed} addProperty={true} handleHide={handleHide}
                     handleTemizle={handleTemizle} handleUpload={handleUpload}
                     previewVisible={previewVisible} handleCancel={handleCancel} handlePreview={handlePreview}
-                    previewImage={previewImage} uploadFile={uploadFile}
+                    previewImage={previewImage} uploadFile={uploadFile} loading={loading}
                 /> :
                 <Button icon={<PlusCircleOutlined />} type="primary" style={{ marginBottom: "12px" }} onClick={() => handleHide()}>
                     ÜRÜN EKLE

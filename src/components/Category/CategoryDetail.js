@@ -26,10 +26,7 @@ const CategoryDetail = () => {
             findCategoryById(id);
             isFetchCategory.current = true;
         }
-        if (categoryImageId) {
-            findImageById(categoryImageId);
-        }
-    }, [categoryImageId])
+    }, [])
 
     const findCategoryById = async (id) => {
         let res = await fetch(url + '/category/byid', {
@@ -47,26 +44,8 @@ const CategoryDetail = () => {
                     detay: data.category ? data.category.detay : null,
                     durum: data.category ? data.category.durum : false
                 })
-                setCategoryImageId(data.category.imageId);
-            })
-            .catch(error => {
-                res.json(error);
-                res.status(405).end();
-            })
-    }
-
-    const findImageById = async (id) => {
-        let res = await fetch(url + '/image/byid', {
-            method: 'POST',
-            body: JSON.stringify({ _id: id }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                // eslint-disable-next-line no-unused-expressions
-                setBelgeGorsel(data.image.image);
+                setCategoryImageId(data.category.image._id);
+                setBelgeGorsel(data.category.image.image);
                 setLoading(false);
             })
             .catch(error => {
@@ -76,6 +55,7 @@ const CategoryDetail = () => {
     }
 
     const onFinish = async (values) => {
+        setLoading(true);
         let categoryCriteria = {
             _id: categoryId,
             kategori_adi: values.kategori_adi,
@@ -92,6 +72,7 @@ const CategoryDetail = () => {
         })
             .then(() => {
                 successModal("Güncelleme");
+                setLoading(false);
                 navigate("/kategoriler");
             })
             .catch(error => {
@@ -101,6 +82,7 @@ const CategoryDetail = () => {
     }
 
     const handleOkDelete = async () => {
+        setLoading(true);
         let deleteCriteria = {
             _id: categoryId
         }
@@ -130,12 +112,29 @@ const CategoryDetail = () => {
             }
         })
             .then(() => {
-                successModal("Silme");
                 navigate("/kategoriler");
             })
             .catch(error => {
                 resp.json(error);
                 resp.status(405).end();
+            })
+
+        let respo = await fetch(url + '/product/delete/bycategory', {
+            method: "DELETE",
+            body: JSON.stringify(deleteCriteria),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(() => {
+                console.log("Ürün silindi");
+                successModal("Kategori Silme");
+                setLoading(false);
+                navigate("/kategoriler");
+            })
+            .catch(error => {
+                respo.json(error);
+                respo.status(405).end();
             })
     }
 
@@ -155,7 +154,7 @@ const CategoryDetail = () => {
                     <Title titleName={"KATEGORİ DETAY"} />
                     <CategoryForm formCategory={formCategoryDetail} onFinish={onFinish}
                         onFinishFailed={onFinishFailed} handleDelete={handleDelete}
-                        belgeGorsel={belgeGorsel} />
+                        belgeGorsel={belgeGorsel} loading={loading}/>
                     <Modal
                         title="Modal"
                         open={openDeleteModal}

@@ -74,6 +74,7 @@ const Categories = () => {
             const base64Object = {
                 base64: await getBase64(uploadFile[0].originFileObj)
             }
+            setLoading(true);
             let res = await fetch(url + "/image", {
                 method: "POST",
                 body: JSON.stringify(base64Object),
@@ -117,6 +118,7 @@ const Categories = () => {
                 setImageId(null);
                 setUploadFile([]);
                 setPreviewImage();
+                setLoading(false);
             })
             .catch(error => {
                 res.json(error);
@@ -162,7 +164,7 @@ const Categories = () => {
                 <CategoryForm formCategory={formCategory} onFinish={onFinish}
                     onFinishFailed={onFinishFailed} addProperty={true} handleTemizle={handleTemizle}
                     previewVisible={previewVisible} handleCancel={handleCancel} previewImage={previewImage} uploadFile={uploadFile}
-                    handlePreview={handlePreview} handleUpload={handleUpload} handleHide={handleHide} /> :
+                    handlePreview={handlePreview} handleUpload={handleUpload} handleHide={handleHide} loading={loading} /> :
                 <Button icon={<PlusCircleOutlined />} type="primary" style={{ marginBottom: "12px" }} onClick={() => handleHide()}>
                     KATEGORİ EKLE
                 </Button>}

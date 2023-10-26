@@ -5,7 +5,10 @@ const CategorySchema = new mongoose.Schema(
         kategori_adi: String,
         detay: String,
         durum: Boolean,
-        imageId: String
+        image: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "ImageDetails"
+        }
     },
     {
         collection: "Categories",

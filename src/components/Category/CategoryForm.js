@@ -10,7 +10,7 @@ const CategoryForm = (props) => {
     const navigate = useNavigate();
     const { formCategory, onFinish, onFinishFailed, handleTemizle, addProperty, handleDelete,
         previewVisible, handleCancel, previewImage, uploadFile, handlePreview, handleUpload,
-        belgeGorsel, handleHide } = props;
+        belgeGorsel, handleHide, loading } = props;
 
     const geriDon = () => {
         navigate("/kategoriler");
@@ -119,11 +119,11 @@ const CategoryForm = (props) => {
                             <Button icon={<StepBackwardOutlined />} onClick={() => geriDon()}>
                                 GERİ DÖN
                             </Button>
-                            <Button type="primary" danger icon={<DeleteOutlined />}
+                            <Button type="primary" danger icon={<DeleteOutlined />} disabled={loading}
                                 style={{ marginLeft: "16px" }} onClick={() => handleDelete(true)}>SİL</Button>
                         </>
                     }
-                    <Button type="primary" htmlType="submit" style={{ marginLeft: "16px" }}
+                    <Button type="primary" htmlType="submit" style={{ marginLeft: "16px" }} disabled={loading}
                         icon={addProperty ? <PlusCircleOutlined /> : <EditOutlined />}>
                         {addProperty ? "EKLE" : "GÜNCELLE"}
                     </Button>

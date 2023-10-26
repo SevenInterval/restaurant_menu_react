@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Image, Input, InputNumber, Modal, Upload } from "antd";
+import { Button, Checkbox, Form, Image, Input, Modal, Upload } from "antd";
 import Title from "../Title";
 import CategorySelector from "../Category/CategorySelector";
 import { ClearOutlined, DeleteOutlined, EditOutlined, PlusCircleOutlined, ShrinkOutlined, StepBackwardOutlined, UploadOutlined } from "@ant-design/icons";
@@ -8,7 +8,7 @@ const ProductForm = (props) => {
     const navigate = useNavigate();
     const { formProduct, onFinish, onFinishFailed, addProperty, handleHide, handleTemizle,
         previewVisible, handleCancel, previewImage, uploadFile, handlePreview, handleUpload,
-        belgeGorsel, handleDelete } = props;
+        belgeGorsel, handleDelete, loading } = props;
 
     const geriDon = () => {
         navigate("/urunler");
@@ -132,11 +132,11 @@ const ProductForm = (props) => {
                             <Button icon={<StepBackwardOutlined />} onClick={() => geriDon()}>
                                 GERİ DÖN
                             </Button>
-                            <Button type="primary" danger icon={<DeleteOutlined />}
+                            <Button type="primary" danger icon={<DeleteOutlined />} disabled={loading}
                                 style={{ marginLeft: "16px" }} onClick={() => handleDelete(true)}>SİL</Button>
                         </>
                     }
-                    <Button type="primary" htmlType="submit" style={{ marginLeft: "16px" }}
+                    <Button type="primary" htmlType="submit" style={{ marginLeft: "16px" }} disabled={loading}
                         icon={addProperty ? <PlusCircleOutlined /> : <EditOutlined />}>
                         {addProperty ? "EKLE" : "GÜNCELLE"}
                     </Button>

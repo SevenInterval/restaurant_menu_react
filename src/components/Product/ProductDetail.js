@@ -26,10 +26,7 @@ const ProductDetail = () => {
             findProductById(id);
             isFetchProduct.current = true;
         }
-        if (productImageId) {
-            findImageById(productImageId);
-        }
-    }, [productImageId])
+    }, [])
 
     const findProductById = async (id) => {
         let res = await fetch(url + '/product/byid', {
@@ -49,26 +46,8 @@ const ProductDetail = () => {
                     kategori_id: data.product ? data.product.kategori_id : null,
                     fiyat: data.product ? data.product.fiyat : null,
                 })
-                setProductImageId(data.product.imageId);
-            })
-            .catch(error => {
-                res.json(error);
-                res.status(405).end();
-            })
-    }
-
-    const findImageById = async (id) => {
-        let res = await fetch(url + '/image/byid', {
-            method: 'POST',
-            body: JSON.stringify({ _id: id }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                // eslint-disable-next-line no-unused-expressions
-                setBelgeGorsel(data.image.image);
+                setProductImageId(data.product.image._id);
+                setBelgeGorsel(data.product.image.image);
                 setLoading(false);
             })
             .catch(error => {
@@ -78,6 +57,7 @@ const ProductDetail = () => {
     }
 
     const onFinish = async (values) => {
+        setLoading(true);
         let productCriteria = {
             _id: productId,
             urun_adi: values.urun_adi,
@@ -96,6 +76,7 @@ const ProductDetail = () => {
         })
             .then(() => {
                 successModal("Güncelleme");
+                setLoading(false);
                 navigate("/urunler");
             })
             .catch(error => {
@@ -105,6 +86,7 @@ const ProductDetail = () => {
     }
 
     const handleOkDelete = async () => {
+        setLoading(true);
         let deleteCriteria = {
             _id: productId
         }
@@ -134,7 +116,8 @@ const ProductDetail = () => {
             }
         })
             .then(() => {
-                successModal("Silme");
+                successModal("Ürün Silme");
+                setLoading(false);
                 navigate("/urunler");
             })
             .catch(error => {
@@ -159,7 +142,7 @@ const ProductDetail = () => {
                     <Title titleName={"KATEGORİ DETAY"} />
                     <ProductForm formProduct={formProductDetail} onFinish={onFinish}
                         onFinishFailed={onFinishFailed} handleDelete={handleDelete}
-                        belgeGorsel={belgeGorsel} />
+                        belgeGorsel={belgeGorsel} loading={loading}/>
                     <Modal
                         title="Modal"
                         open={openDeleteModal}

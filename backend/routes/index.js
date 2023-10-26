@@ -23,6 +23,7 @@ productRouter.get('', productController.getAllProducts);
 productRouter.post('', productController.postProduct);
 productRouter.put('', productController.updateProduct);
 productRouter.delete('', productController.deleteProduct);
+productRouter.delete('/delete/bycategory', productController.deleteProductByCategoryId);
 
 const routes = app => {
   app.use('/category', categoryRouter);
