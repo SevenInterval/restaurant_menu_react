@@ -42,7 +42,8 @@ const CategoryDetail = () => {
                 formCategoryDetail.setFieldsValue({
                     kategori_adi: data.category ? data.category.kategori_adi : null,
                     detay: data.category ? data.category.detay : null,
-                    durum: data.category ? data.category.durum : false
+                    durum: data.category ? data.category.durum : false,
+                    sira: data.category ? data.category.sira : 0,
                 })
                 setCategoryImageId(data.category.image._id);
                 setBelgeGorsel(data.category.image.image);
@@ -61,6 +62,7 @@ const CategoryDetail = () => {
             kategori_adi: values.kategori_adi,
             durum: (values.durum && typeof values.durum !== "undefined") ? values.durum : false,
             detay: values.detay,
+            sira: values.sira,
             imageId: categoryImageId
         }
         let res = await fetch(url + '/category', {

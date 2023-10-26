@@ -24,6 +24,13 @@ const CategoryList = (props) => {
             sorter: (a, b) => a.detay.localeCompare(b.detay),
         },
         {
+            title: 'Sıra',
+            dataIndex: 'sira',
+            key: 'sira',
+            sorter: (a, b) => a.sira.localeCompare(b.sira),
+            defaultSortOrder: 'ascend'
+        },
+        {
             title: 'Durum',
             dataIndex: 'durum',
             key: 'durum',

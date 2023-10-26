@@ -29,16 +29,17 @@ async function getAllCategories(req, res) {
 
 async function postCategory(req, res) {
     const { body } = req;
-    const { kategori_adi, detay, durum, imageId } = body;
+    const { kategori_adi, detay, durum, sira, imageId } = body;
 
     console.log('Server received data:');
-    console.log({ kategori_adi, detay, durum, imageId });
+    console.log({ kategori_adi, detay, durum, sira, imageId });
 
     try {
         await Categories.create({
             kategori_adi: kategori_adi,
             detay: detay,
             durum: durum,
+            sira: sira,
             image: imageId
         })
         res
@@ -53,14 +54,15 @@ async function postCategory(req, res) {
 
 async function updateCategory(req, res) {
     const { body } = req;
-    const { _id, kategori_adi, detay, durum, imageId } = body;
+    const { _id, kategori_adi, detay, durum, sira, imageId } = body;
     console.log('Server received data:');
-    console.log({ _id, kategori_adi, detay, durum, imageId });
+    console.log({ _id, kategori_adi, detay, durum, sira, imageId });
     const filter = { _id: new ObjectId(_id) }
     const newCategory = {
         kategori_adi: kategori_adi,
         detay: detay,
         durum: durum,
+        sira: sira,
         image: imageId
     }
 

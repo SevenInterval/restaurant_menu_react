@@ -63,7 +63,8 @@ const Categories = () => {
             let categoryCriteria = {
                 kategori_adi: values.kategori_adi,
                 durum: (values.durum && typeof values.durum !== "undefined") ? values.durum : false,
-                detay: values.detay
+                detay: values.detay,
+                sira: values.sira,
             }
             const isLt2M = uploadFile[0].originFileObj.size / 1024 / 1024 < 0.5;
             if (!isLt2M) {
@@ -102,6 +103,7 @@ const Categories = () => {
             kategori_adi: criteriaCategory.kategori_adi,
             durum: (criteriaCategory.durum && typeof criteriaCategory.durum !== "undefined") ? criteriaCategory.durum : false,
             detay: criteriaCategory.detay,
+            sira: criteriaCategory.sira,
             imageId: imageId
         }
         let res = await fetch(url + '/category', {

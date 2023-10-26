@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Image, Input, Modal, Upload } from "antd";
+import { Button, Checkbox, Form, Image, Input, InputNumber, Modal, Upload } from "antd";
 import { useNavigate } from "react-router-dom";
 import {
     UploadOutlined, PlusCircleOutlined, EditOutlined, ClearOutlined, ShrinkOutlined,
@@ -56,6 +56,19 @@ const CategoryForm = (props) => {
                     ]}
                 >
                     <Input maxLength={45}/>
+                </Form.Item>
+                <Form.Item
+                    label='Sıra'
+                    name="sira"
+                    
+                    rules={[
+                        {
+                            required: true,
+                            message: "Lütfen Sıra alanını doldurunuz!",
+                        },
+                    ]}
+                >
+                    <InputNumber min={1}/>
                 </Form.Item>
 
                 <Form.Item
