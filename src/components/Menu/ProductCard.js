@@ -1,4 +1,4 @@
-import { Col, Row } from "antd";
+import { Col, Image, Row } from "antd";
 
 const ProductCard = (props) => {
     const { productData } = props;
@@ -11,7 +11,11 @@ const ProductCard = (props) => {
                         return (
                             <Col xs={12} xl={6} className="productColumn">
                                 <div className="productCardMain">
-                                    <h2>Test</h2>
+                                    <Image src={product.image} />
+                                    <br />
+                                    <h3>{product.urunAdi.toUpperCase()}</h3>
+                                    <p>{product.urunDetay}</p>
+                                    <p><b>{product.fiyat}TL</b></p>
                                 </div>
                             </Col>
 
