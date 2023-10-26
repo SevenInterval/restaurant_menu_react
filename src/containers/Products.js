@@ -67,7 +67,7 @@ const Products = () => {
                 urun_detay: values.urun_detay,
                 sira: values.sira,
                 fiyat: values.fiyat,
-                kategori_id: values.kategori_id
+                kategori: values.kategori
             }
             const isLt2M = uploadFile[0].originFileObj.size / 1024 / 1024 < 0.5;
             if (!isLt2M) {
@@ -108,7 +108,7 @@ const Products = () => {
             urun_detay: productCriteria.urun_detay,
             sira: productCriteria.sira,
             fiyat: productCriteria.fiyat,
-            kategori_id: productCriteria.kategori_id,
+            kategori: productCriteria.kategori,
             imageId: imageId
         }
         let res = await fetch(url + '/product', {

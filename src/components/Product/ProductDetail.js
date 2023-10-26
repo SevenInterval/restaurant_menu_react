@@ -44,7 +44,7 @@ const ProductDetail = () => {
                     urun_detay: data.product ? data.product.urun_detay : null,
                     durum: data.product ? data.product.durum : false,
                     sira: data.product ? data.product.sira : null,
-                    kategori_id: data.product ? data.product.kategori_id : null,
+                    kategori: data.product ? data.product.kategori : null,
                     fiyat: data.product ? data.product.fiyat : null,
                 })
                 setProductImageId(data.product.image._id);
@@ -65,7 +65,7 @@ const ProductDetail = () => {
             durum: (values.durum && typeof values.durum !== "undefined") ? values.durum : false,
             sira: values.sira,
             urun_detay: values.urun_detay,
-            kategori_id: values.kategori_id,
+            kategori: values.kategori,
             fiyat: values.fiyat,
             imageId: productImageId
         }

@@ -6,7 +6,10 @@ const ProductSchema = new mongoose.Schema(
         urun_detay: String,
         durum: Boolean,
         sira: String,
-        kategori_id: String,
+        kategori: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Categories"
+        },
         fiyat: String,
         image: {
             type: mongoose.Schema.Types.ObjectId,

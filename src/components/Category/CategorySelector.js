@@ -38,7 +38,7 @@ const CategorySelector = (props) => {
     return (
         <Form.Item
             label="Kategori"
-            name="kategori_id"
+            name="kategori"
             rules={[
                 {
                     required: true,
