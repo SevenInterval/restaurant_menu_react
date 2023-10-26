@@ -30,16 +30,17 @@ async function getAllProducts(req, res) {
 
 async function postProduct(req, res) {
     const { body } = req;
-    const { urun_adi, urun_detay, durum, kategori_id, fiyat, imageId } = body;
+    const { urun_adi, urun_detay, durum, sira, kategori_id, fiyat, imageId } = body;
 
     console.log('Server received data:');
-    console.log({ urun_adi, urun_detay, durum, kategori_id, fiyat, imageId });
+    console.log({ urun_adi, urun_detay, durum, sira, kategori_id, fiyat, imageId });
 
     try {
         await Products.create({
             urun_adi: urun_adi,
             urun_detay: urun_detay,
             durum: durum,
+            sira: sira,
             kategori_id: kategori_id,
             fiyat: fiyat,
             image: imageId
@@ -56,14 +57,15 @@ async function postProduct(req, res) {
 
 async function updateProduct(req, res) {
     const { body } = req;
-    const { _id, urun_adi, urun_detay, durum, kategori_id, fiyat, imageId } = body;
+    const { _id, urun_adi, urun_detay, durum, sira, kategori_id, fiyat, imageId } = body;
     console.log('Server received data:');
-    console.log({ _id, urun_adi, urun_detay, durum, kategori_id, fiyat, imageId });
+    console.log({ _id, urun_adi, urun_detay, durum, sira, kategori_id, fiyat, imageId });
     const filter = { _id: new ObjectId(_id) }
     const newProduct = {
         urun_adi: urun_adi,
         urun_detay: urun_detay,
         durum: durum,
+        sira: sira,
         kategori_id: kategori_id,
         fiyat: fiyat,
         image: imageId

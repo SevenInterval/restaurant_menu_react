@@ -65,6 +65,7 @@ const Products = () => {
                 urun_adi: values.urun_adi,
                 durum: (values.durum && typeof values.durum !== "undefined") ? values.durum : false,
                 urun_detay: values.urun_detay,
+                sira: values.sira,
                 fiyat: values.fiyat,
                 kategori_id: values.kategori_id
             }
@@ -105,6 +106,7 @@ const Products = () => {
             urun_adi: productCriteria.urun_adi,
             durum: (productCriteria.durum && typeof productCriteria.durum !== "undefined") ? productCriteria.durum : false,
             urun_detay: productCriteria.urun_detay,
+            sira: productCriteria.sira,
             fiyat: productCriteria.fiyat,
             kategori_id: productCriteria.kategori_id,
             imageId: imageId

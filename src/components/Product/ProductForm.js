@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Image, Input, Modal, Upload } from "antd";
+import { Button, Checkbox, Form, Image, Input, InputNumber, Modal, Upload } from "antd";
 import Title from "../Title";
 import CategorySelector from "../Category/CategorySelector";
 import { ClearOutlined, DeleteOutlined, EditOutlined, PlusCircleOutlined, ShrinkOutlined, StepBackwardOutlined, UploadOutlined } from "@ant-design/icons";
@@ -69,6 +69,19 @@ const ProductForm = (props) => {
                         },
                     ]}>
                     <Input />
+
+                </Form.Item>
+
+                <Form.Item
+                    label="Sıra"
+                    name='sira'
+                    rules={[
+                        {
+                            required: true,
+                            message: "Lütfen Sıra alanını doldurunuz!",
+                        },
+                    ]}>
+                    <InputNumber min={1} />
 
                 </Form.Item>
 

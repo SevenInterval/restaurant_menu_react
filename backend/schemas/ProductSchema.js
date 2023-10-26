@@ -5,6 +5,7 @@ const ProductSchema = new mongoose.Schema(
         urun_adi: String,
         urun_detay: String,
         durum: Boolean,
+        sira: String,
         kategori_id: String,
         fiyat: String,
         image: {

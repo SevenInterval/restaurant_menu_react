@@ -29,6 +29,12 @@ const ProductList = (props) => {
             sorter: (a, b) => a.urun_detay.localeCompare(b.urun_detay),
         },
         {
+            title: 'Sıra',
+            dataIndex: 'sira',
+            key: 'sira',
+            sorter: (a, b) => a.sira.localeCompare(b.sira),
+        },
+        {
             title: 'Durum',
             dataIndex: 'durum',
             key: 'durum',
