@@ -20,7 +20,7 @@ async function getCategoryById(req, res) {
 
 async function getAllCategories(req, res) {
     try {
-        const allCategories = await Categories.find({});
+        const allCategories = await Categories.find({}).populate("image");
         res.json({ status: 200, categories: allCategories });
     } catch (error) {
         res.json({ message: error });

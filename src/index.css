@@ -162,17 +162,20 @@
   padding: 30px!important;
 }
 .cardMainDiv {
-  padding: 12px 0 !important;
+  padding: 0px 0 !important;
     border: none!important;
     font-style: inherit;
     margin: 12px 0!important;
     outline: 0;
     display: block;
     text-align: left;
-    background: #022123;
-    color: #fff;
-    height: 60px!important;
+    /*background-color: #022123;*/
+    color: #ffffff!important;
+    height: 84px!important;
     cursor: pointer;
+    background-repeat: 'no-repeat'!important; 
+    background-position: 'center'!important; 
+    background-size: 'cover'!important;
 }
 
 .cardMainDiv:hover {
@@ -180,9 +183,16 @@
 }
 
 .cardSubDiv {
+  display: block;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: brightness(40%);
+}
+
+.cardDetailDiv {
   display: inline-block;
   width: 80%;
-  padding-top: 12px;
+  padding: 22px 12px!important;
 }
 
 .cardButtonDiv {
@@ -202,12 +212,15 @@
     font-size: 14px!important;
     font-weight: 100!important;
   }
+  .cardDetailDiv {
+    width: 77%!important;
+  }
 }
 
 .cardKategoriAdi {
   background-size: cover !important;
     background-repeat: no-repeat !important;
-    padding: 0px 16px !important;
+    padding: 12px 16px !important;
     font-family: Futura-Med;
     font-size: 20px;
     font-weight: 600;
@@ -232,5 +245,10 @@
   border: 1px solid #022123;
   height: auto;
   padding: 16px;
+}
+
+.productColumn {
+  padding-right: 12px!important;
+  padding-bottom: 12px;
 }
 

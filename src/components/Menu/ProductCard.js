@@ -1,16 +1,22 @@
 import { Col, Row } from "antd";
 
 const ProductCard = (props) => {
-    const { urun_adi, urun_detay, fiyat } = props;
+    const { productData } = props;
 
     return (
         <>
             <Row>
-                <Col span={6} >
-                    <div className="productCardMain">
+                {productData.length > 0 &&
+                    productData.map(product => {
+                        return (
+                            <Col xs={12} xl={6} className="productColumn">
+                                <div className="productCardMain">
+                                    <h2>Test</h2>
+                                </div>
+                            </Col>
 
-                    </div>
-                </Col>
+                        )
+                    })}
             </Row>
         </>
     )

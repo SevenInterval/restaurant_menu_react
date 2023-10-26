@@ -20,7 +20,7 @@ async function getProductById(req, res) {
 
 async function getAllProducts(req, res) {
     try {
-        const allProducts = await Products.find({}).populate("kategori")
+        const allProducts = await Products.find({}).populate("kategori").populate("image")
         res.json({ status: 200, products: allProducts });
     } catch (error) {
         res.json({ message: error });

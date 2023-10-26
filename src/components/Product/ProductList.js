@@ -65,13 +65,9 @@ const ProductList = (props) => {
         navigate("/urunDetay", { state: data });
     }
 
-    const onChange = (pagination, filters, sorter, extra) => {
-        console.log('params', pagination, filters, sorter, extra);
-    };
-
     return (
         <>
-            <Table columns={columns} dataSource={tableData} loading={loading} onChange={onChange} />
+            <Table columns={columns} dataSource={tableData} loading={loading} />
         </>
     )
 }
