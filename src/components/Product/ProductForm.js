@@ -58,7 +58,7 @@ const ProductForm = (props) => {
                         },
                     ]}
                 >
-                    <TextArea rows={4} placeholder="Ürün Detayını Giriniz..." maxLength={6} />
+                    <TextArea rows={4} placeholder="Ürün Detayını Giriniz..." />
                 </Form.Item>
 
                 <Form.Item

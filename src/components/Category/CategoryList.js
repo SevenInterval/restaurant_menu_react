@@ -2,6 +2,7 @@ import { Table } from "antd";
 import React, { useState, useEffect } from "react"
 import { categoryTableData } from "./categoryTableGenerate";
 import { useNavigate } from "react-router-dom";
+import { aktifPasifTableFilter } from "../Product/productTableFilter";
 
 const CategoryList = (props) => {
     const { categoryData, loading } = props;
@@ -35,6 +36,8 @@ const CategoryList = (props) => {
             dataIndex: 'durum',
             key: 'durum',
             sorter: (a, b) => a.durum.localeCompare(b.durum),
+            filters: aktifPasifTableFilter(),
+            onFilter: (value, record) => record.durum.indexOf(value) === 0,
         }
     ]
 
