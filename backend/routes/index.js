@@ -2,10 +2,12 @@ const express = require('express');
 const categoryRouter = express.Router();
 const imageRouter = express.Router();
 const productRouter = express.Router();
+const suggestionRouter = express.Router();
 
 const categoryController = require('../controller/category.controller');
 const imageController = require('../controller/image.controller');
 const productController = require('../controller/product.controller');
+const suggestionController = require('../controller/suggestion.controller');
 
 
 categoryRouter.post('/byid', categoryController.getCategoryById);
@@ -25,10 +27,15 @@ productRouter.put('', productController.updateProduct);
 productRouter.delete('', productController.deleteProduct);
 productRouter.delete('/delete/bycategory', productController.deleteProductByCategoryId);
 
+suggestionRouter.get('', suggestionController.getAllSuggestions);
+suggestionRouter.post('', suggestionController.postSuggestion);
+suggestionRouter.delete('', suggestionController.deleteSuggestion);
+
 const routes = app => {
   app.use('/category', categoryRouter);
   app.use('/image', imageRouter);
   app.use('/product', productRouter);
+  app.use('/suggestion', suggestionRouter);
 };
 
 module.exports = routes;
