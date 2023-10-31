@@ -4,7 +4,7 @@ const SuggestionSchema = new mongoose.Schema(
     {
         gorus_detay: String,
         email: String,
-        telefon: Boolean,        
+        telefon: String,        
     },
     {
         collection: "Suggestions",

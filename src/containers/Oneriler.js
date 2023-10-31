@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { backendUri } from "../utilities/strings";
 import { successModal } from "../utilities/modals";
-import { Button, Form } from "antd";
+import { Button, Form, Modal } from "antd";
 import { PlusCircleOutlined } from "@ant-design/icons"
 import SuggestionList from "../components/Suggestion/SuggestionList";
 import SuggestionForm from "../components/Suggestion/SuggestionForm";
@@ -11,6 +11,8 @@ const Oneriler = () => {
     const [loading, setLoading] = useState(false);
     const [suggestionData, setSuggestionData] = useState([]);
     const [suggestionAddShow, setSuggestionAddShow] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [deletableOneriId, setDeletableOneriId] = useState();
     const [formSuggestion] = Form.useForm();
     const url = backendUri;
 
@@ -77,8 +79,53 @@ const Oneriler = () => {
         setSuggestionAddShow(!suggestionAddShow);
     }
 
+    const handleDelete = (status, oneriId) => {
+        setOpenDeleteModal(status);
+        if (status) {
+            setDeletableOneriId(oneriId);
+        } else {
+            setDeletableOneriId(null);
+        }
+    }
+
+    const handleOkDelete = async () => {
+        setLoading(true);
+        let deleteCriteria = {
+            _id: deletableOneriId
+        }
+
+        let res = await fetch(url + '/suggestion', {
+            method: "DELETE",
+            body: JSON.stringify(deleteCriteria),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(() => {
+                successModal("Öneri silindi");
+                setLoading(false);
+                setDeletableOneriId(null);
+                fetchAllSuggestions();
+                setOpenDeleteModal(false);
+            })
+            .catch(error => {
+                res.json(error);
+                res.status(405).end();
+            });
+    }
+
     return (
         <>
+            <Modal
+                title="Modal"
+                open={openDeleteModal}
+                onOk={() => handleOkDelete()}
+                onCancel={() => handleDelete(false)}
+                okText="Onay"
+                cancelText="İptal"
+            >
+                <p>Öneri'yi Silmek İstediğinizden Emin Misiniz?</p>
+            </Modal>
             {suggestionAddShow ?
                 <SuggestionForm formSuggestion={formSuggestion} onFinish={onFinish}
                     onFinishFailed={onFinishFailed} handleTemizle={handleTemizle}
@@ -87,7 +134,7 @@ const Oneriler = () => {
                     ÖNERİ/GÖRÜŞ EKLE
                 </Button>}
 
-            <SuggestionList suggestionData={suggestionData} loading={loading} />
+            <SuggestionList suggestionData={suggestionData} loading={loading} handleDelete={handleDelete} />
         </>
     )
 }
