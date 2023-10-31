@@ -55,7 +55,7 @@ const CategoryForm = (props) => {
                         },
                     ]}
                 >
-                    <Input maxLength={45}/>
+                    <Input maxLength={30}/>
                 </Form.Item>
                 <Form.Item
                     label='Sıra'

@@ -4,6 +4,7 @@ import ProductCard from "../components/Menu/ProductCard";
 import { backendUri } from "../utilities/strings";
 import { Spin } from "antd";
 import { generateProductDetail } from "../components/Menu/generateTableMenu";
+import { RightOutlined, DownOutlined } from "@ant-design/icons"
 
 const Menu = () => {
     const isFetchCategory = useRef(true);
@@ -70,7 +71,7 @@ const Menu = () => {
                                 return (
                                     <>
                                         <CategoryCard kategori_adi={kategori.kategori_adi} detay={kategori.detay} categoryId={kategori._id} image={kategori.image.image}
-                                            openProductList={openProductList} />
+                                            openProductList={openProductList} buttonDesign={selected[kategori._id] ? <DownOutlined /> : <RightOutlined />}/>
                                         <div style={selected[kategori._id] ? { display: "block" } : { display: "none" }}>
                                             <ProductCard productData={productData.filter(data => data.categoryId === kategori._id)} />
                                         </div>

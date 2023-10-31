@@ -23,7 +23,7 @@ const Navbar = () => {
             <Layout>
                 <Layout.Header className="nav-header">
                     <div className="logo">
-                        <h3 className="brand-font">Marka Buraya</h3>
+                        <label className="brand-font"><b>MARKA BURAYA</b></label>
                         {/* <img className="brand-font" src={brandLogo} alt="brandLogo" /> */}
                     </div>
                     <div className="navbar-menu">

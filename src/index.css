@@ -1,3 +1,6 @@
+body {
+  font-family: Arial, sans-serif!important;
+}
 /* Navbar */
 
 .navbar {
@@ -19,7 +22,7 @@
 }
 
 .logo {
-  width: 200px;
+  width: 150px;
   float: left;
 }
 
@@ -30,7 +33,7 @@
 }
 
 .navbar-menu {
-  width: calc(100% - 200px);
+  width: calc(100% - 150px);
   float: left;
 }
 .navbar-menu .ant-layout-header {
@@ -221,8 +224,7 @@
   background-size: cover !important;
     background-repeat: no-repeat !important;
     padding: 12px 16px !important;
-    font-family: Futura-Med;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     letter-spacing: .5px;
     line-height: 0.3em;
