@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Button, Drawer } from "antd";
 import LeftMenu from "./LeftMenu";
-import RightMenu from "./RightMenu";
 import { MenuOutlined } from "@ant-design/icons";
 import { useLocation } from "react-router-dom";
-import brandLogo from '../../assets/logo.png'
 
 const Navbar = () => {
     let { pathname: location } = useLocation();
