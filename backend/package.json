@@ -1,12 +1,16 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project is Restaurant Menu Admin Panel.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "author": "",
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "author": "ridvan-ozturk",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -22,5 +26,8 @@
     "nodemailer": "^6.7.8",
     "nodemon": "^2.0.22",
     "pug": "^3.0.2"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
